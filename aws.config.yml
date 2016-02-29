@@ -1,12 +1,14 @@
 
-thephalcons_amazon_web_services:
+the_phalcons_amazon_web_services:
     # for stream wrapper use : [S3, SES ...]
     enable_extensions:              []
+    # Remove it or keep blank string to use environnement credentials
+    # like IAM Role credentials with EC2 instance
     credentials:
-        key:                        <YOUR APP KEY>
-        secret:                     <YOUT APP SECRET>
+        key:                        ''                        # <YOUR APP KEY>
+        secret:                     ''                        # <YOUR APP SECRET>
     shared_config:
-        region:                     %aws_region%
+        region:                     %aws_region%              # required
         version:                    %aws_version%
         account_id:                 %aws_account_id%
         canonical_id:               %aws_canonical_id%

@@ -103,11 +103,13 @@ $loader->registerNamespaces(array(
 the_phalcons_amazon_web_services:
     # for stream wrapper use : [S3, SES ...]
     enable_extensions:              []
+    # Remove it or keep blank string to use environnement credentials
+    # like IAM Role credentials with EC2 instance
     credentials:
-        key:                        <YOUR APP KEY>
-        secret:                     <YOUT APP SECRET>
+        key:                        ''                        # <YOUR APP KEY>
+        secret:                     ''                        # <YOUR APP SECRET>
     shared_config:
-        region:                     %aws_region%
+        region:                     %aws_region%              # required
         version:                    %aws_version%
         account_id:                 %aws_account_id%
         canonical_id:               %aws_canonical_id%
@@ -118,6 +120,19 @@ the_phalcons_amazon_web_services:
         default_cache_config:       null
         certificate_authority:      false
         disable_auto_config:        false
+    services:
+        S3:
+            bucket:                 <YOUR BUCKET NAME>
+            #... add all used bucket like assets bucket or upload bucket, can be accessed
+            #using container in your code
+        CloudFront:
+            web_distribution:    http://xxxxxxxxxxxxxx.cloudfront.net
+            #upload_distribution:   http://xxxxxxxxxxxxxx.cloudfront.net
+        SES:
+            verified_addresse:      <YOUR Verified @>
+            #for more information how to use SES service
+            #http://docs.aws.amazon.com/aws-sdk-php/v2/guide/service-ses.html
+
 ```
 
 **Note, as in 5a) above, only the key and secret are presently being used, so it is safe to omit the rest if you wish.**

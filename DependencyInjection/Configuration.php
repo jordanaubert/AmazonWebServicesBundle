@@ -43,8 +43,8 @@ class Configuration implements ConfigurationInterface
             ->arrayNode('enable_extensions')->defaultValue(array())->prototype('scalar')->end()->end()
             ->arrayNode('credentials')
             ->children()
-            ->scalarNode('key')->isRequired()->end()
-            ->scalarNode('secret')->isRequired()->end()
+            ->scalarNode('key')->defaultValue('')->end()
+            ->scalarNode('secret')->defaultValue('')->end()
             ->end()//children
             ->end()//credentials
             ->arrayNode('shared_config')
